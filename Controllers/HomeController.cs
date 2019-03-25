@@ -10,9 +10,9 @@ namespace TourEZ.Controllers
 {
     public class HomeController : Controller
     {
-        [Route("")]
+        [Route("Dashboard")]
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Dashboard()
         {
             return View();
         }
