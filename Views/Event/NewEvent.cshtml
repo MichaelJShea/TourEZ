@@ -1,0 +1,26 @@
+<div class="container-fluid">
+    <div class="container rounded p-4 col-6">
+        <form asp-action="AddEvent" asp-controller="Event" method="post">
+            <div class="form-group">
+                <span asp-for="eventName"></span>
+                <label asp-for="eventName"></label>
+                <input asp-for="eventName" class="form-control">
+            </div>
+            <div class="form-group">
+                <span asp-for="start"></span>
+                <label asp-for="start"></label>
+                <input asp-for="start" class="form-control">
+            </div>
+            <div class="form-group">
+                <span asp-for="end"></span>
+                <label asp-for="end"></label>
+                <input asp-for="end" class="form-control">
+            </div>
+            <div class="form-group">
+                <span asp-for="location"></span>
+                <label asp-for="location"></label>
+                <input asp-for="location" class="form-control">
+            </div>
+        </form>
+    </div>
+</div>
