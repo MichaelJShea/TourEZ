@@ -12,7 +12,7 @@ namespace TourEZ.Models
         public string eventName {get;set;}
         public DateTime start {get;set;}
         public DateTime end {get;set;}
-        public string location {get;set;}
+        public String location {get;set;}
         public DateTime created_at {get;set;} = DateTime.Now;
 
        

@@ -1,4 +1,5 @@
-<div class="container-fluid">
+@model Event
+<div class="container-fluid text-white">
     <div class="container rounded p-4 col-6">
         <form asp-action="AddEvent" asp-controller="Event" method="post">
             <div class="form-group">
@@ -19,8 +20,11 @@
             <div class="form-group">
                 <span asp-for="location"></span>
                 <label asp-for="location"></label>
-                <input asp-for="location" class="form-control">
+                <input asp-for="location" class="form-control" id="location">
             </div>
+            <button class="btn btn-primary" type="submit" id=>Create Event</button>
         </form>
     </div>
 </div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDd0qpuCR49IQTA4Ce6wDEw5Gh5l10Swb8&libraries=places&callback=AutoCompleteLocation" async defer></script>
+

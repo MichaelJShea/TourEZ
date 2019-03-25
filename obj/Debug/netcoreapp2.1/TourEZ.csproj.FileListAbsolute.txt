@@ -14,7 +14,6 @@
 /Users/Shea/Desktop/TourEZ/obj/Debug/netcoreapp2.1/TourEZ.TagHelpers.input.cache
 /Users/Shea/Desktop/TourEZ/obj/Debug/netcoreapp2.1/TourEZ.TagHelpers.output.cache
 /Users/Shea/Desktop/TourEZ/obj/Debug/netcoreapp2.1/TourEZ.RazorCoreGenerate.cache
-/Users/Shea/Desktop/TourEZ/obj/Debug/netcoreapp2.1/Razor/Views/Home/Index.g.cshtml.cs
 /Users/Shea/Desktop/TourEZ/obj/Debug/netcoreapp2.1/Razor/Views/Shared/_Layout.g.cshtml.cs
 /Users/Shea/Desktop/TourEZ/obj/Debug/netcoreapp2.1/Razor/Views/_ViewImports.g.cshtml.cs
 /Users/Shea/Desktop/TourEZ/obj/Debug/netcoreapp2.1/Razor/Views/_ViewStart.g.cshtml.cs
@@ -24,3 +23,6 @@
 /Users/Shea/Desktop/TourEZ/obj/Debug/netcoreapp2.1/TourEZ.dll
 /Users/Shea/Desktop/TourEZ/obj/Debug/netcoreapp2.1/TourEZ.pdb
 /Users/Shea/Desktop/TourEZ/obj/Debug/netcoreapp2.1/TourEZ.csproj.CopyComplete
+/Users/Shea/Desktop/TourEZ/obj/Debug/netcoreapp2.1/Razor/Views/Event/NewEvent.g.cshtml.cs
+/Users/Shea/Desktop/TourEZ/obj/Debug/netcoreapp2.1/Razor/Views/Home/Dashboard.g.cshtml.cs
+/Users/Shea/Desktop/TourEZ/obj/Debug/netcoreapp2.1/Razor/Views/User/LoginReg.g.cshtml.cs
