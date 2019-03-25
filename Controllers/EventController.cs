@@ -22,8 +22,14 @@ namespace TourEZ.Controllers
         [Route("event")]
         [HttpGet]
         public IActionResult NewEvent()
-        {
-            return View();
+        { 
+            int? userId = HttpContext.Session.GetInt32("UserId");
+            if(userId == null)
+            {
+                ModelState.AddModelError("UserLogin.Email", "Login to continue");
+                return View("LoginReg", "User");
+            }
+            return RedirectToAction("Dashboard", "Home");
         }
 
         [Route("event")]

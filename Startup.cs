@@ -38,6 +38,7 @@ namespace TourEZ
             
 
             app.UseStaticFiles();
+            app.UseSession();
             app.UseMvc();
         }
     }
