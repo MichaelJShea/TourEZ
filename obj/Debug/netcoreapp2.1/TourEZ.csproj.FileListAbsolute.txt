@@ -26,3 +26,4 @@
 /Users/Shea/Desktop/TourEZ/obj/Debug/netcoreapp2.1/Razor/Views/Event/NewEvent.g.cshtml.cs
 /Users/Shea/Desktop/TourEZ/obj/Debug/netcoreapp2.1/Razor/Views/Home/Dashboard.g.cshtml.cs
 /Users/Shea/Desktop/TourEZ/obj/Debug/netcoreapp2.1/Razor/Views/User/LoginReg.g.cshtml.cs
+/Users/Shea/Desktop/TourEZ/obj/Debug/netcoreapp2.1/Razor/Views/Home/ViewEvent.g.cshtml.cs

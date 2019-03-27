@@ -3,27 +3,66 @@
 
     </div>
 </div>
-<div class="container text-center">
+<div class="container text-center jumbotron mt-2">
     <div class="container">
-        <h3 class="text-white mt-5">Your Events</h3><a href="/newevent" role="button">Add Event</a>
+        <h3 class="">Your Events</h3><a class="btn btn-outline-info info mb-2" href="/newevent" role="button">Add Event</a>
     </div>
-    <table class="table table-striped text-white">
+    <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="col">Location</th>
-                <th scope="col">Start Date</th>
+                <th scope="col">Date</th>
+                <th scope="col">Event</th>
                 <th scope="col">End Date</th>
                 <th scope="col">Days Until</th>
+                <th scope="col">Delete</th>
             </tr>
         </thead>
-        <tbody>
-            <tr>
-                <td><a href="#">Destination</a></td>
-                <td>Start Date</td>
-                <td>End Date</td>
-                <td>Days Until</td>
-            </tr>
+        <tbody id="listevents">
+            <!-- LIST OF EVENTS GOES HERE FROM JS -->
         </tbody>
     </table>
 </div>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDd0qpuCR49IQTA4Ce6wDEw5Gh5l10Swb8&callback=initMap" async defer></script>
+<script>
+    $(document).ready(function(){
+        $.ajax({
+            url: "/dashboard/events",
+            success: function(data)
+            {console.log(data);
+                for(var i=0; i<data.length; i++)
+                {
+                    $("#listevents").append(`<tr><td>${data[i].start}</td><td><a href="/event/${data[i].eventId}">${data[i].eventName}</a></td><td>${data[i].end}</td><td>Days Until</td><td><a href="event/delete/${data[i].eventId}" class="btn btn-outline-primary" role="button">Delete</a></td></tr>`)
+
+                        var geocodingParams = {
+                            searchText: `${data[i].location}`
+                        };
+                        var onResult = function(result) {
+                            var locations = result.Response.View[0].Result,
+                                position,
+                                marker;
+                                // Add a marker for each location found
+                            for (i = 0;  i < locations.length; i++) {
+                                position = {
+                                    lat: locations[i].Location.DisplayPosition.Latitude,
+                                    lng: locations[i].Location.DisplayPosition.Longitude
+                                };
+                                marker = new H.map.Marker(position);
+                                map.addObject(marker);
+                             }
+                        };
+                        // Get an instance of the geocoding service:
+                    var geocoder = platform.getGeocodingService();
+
+                    // Call the geocode method with the geocoding parameters,
+                    // the callback and an error callback function (called if a
+                    // communication error occurs):
+                    geocoder.geocode(geocodingParams, onResult, function(e) {
+                    alert(e);
+                    });
+
+                }
+            },
+
+            
+        })
+    })
+</script>

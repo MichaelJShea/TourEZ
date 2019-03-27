@@ -13,7 +13,10 @@ namespace TourEZ.Models
         public DateTime start {get;set;}
         public DateTime end {get;set;}
         public String location {get;set;}
+        public double longitude {get; set;}
+        public double latitude {get; set;}
         public DateTime created_at {get;set;} = DateTime.Now;
+        public DateTime updated_at {get; set;} = DateTime.Now;
 
        
     }

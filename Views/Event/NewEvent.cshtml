@@ -22,9 +22,44 @@
                 <label asp-for="location"></label>
                 <input asp-for="location" class="form-control" id="location">
             </div>
-            <button class="btn btn-primary" type="submit" id=>Create Event</button>
+            <button class="btn btn-primary" type="submit" id="submit">Create Event</button>
+            <input asp-for="longitude" type="hidden" value="" id="long">
+            <input asp-for="latitude"type="hidden" value="" id="lat">
         </form>
     </div>
 </div>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDd0qpuCR49IQTA4Ce6wDEw5Gh5l10Swb8&libraries=places&callback=AutoCompleteLocation" async defer></script>
 
+<script>
+ 
+     $('#submit').onclick(function(e){ -->
+        e.preventDefault();
+        console.Log("Submited!");
+        $.ajax({
+            var geocodingParams = {
+            searchText: $(document.getElementById('location'))
+            };
+    
+            var onResult = function(result) {
+            var locations = result.Response.View[0].Result,
+                position,
+    
+                    for (i = 0;  i < locations.length; i++) {
+                        position = {
+                            lat: locations[i].Location.DisplayPosition.Latitude,
+                            lng: locations[i].Location.DisplayPosition.Longitude
+                        };       
+                    };
+                $(document.getElementById('long').val() = position['lng'])
+                $(document.getElementById('lat').val() = position['lat'])
+            };
+    
+            geocoder.geocode(geocodingParams, onResult, function(e) {
+            alert(e);
+             });
+            
+    
+        })
+    })
+    
+</script>
