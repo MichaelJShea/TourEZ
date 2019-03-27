@@ -19,26 +19,25 @@ namespace TourEZ.Controllers
             dbContext = context;
         }
 
-        [Route("event")]
+        [Route("newevent")]
         [HttpGet]
         public IActionResult NewEvent()
         { 
             int? userId = HttpContext.Session.GetInt32("UserId");
             if(userId == null)
             {
-                ModelState.AddModelError("UserLogin.Email", "Login to continue");
-                return View("LoginReg", "User");
+                return RedirectToAction("LoginReg", "User");
             }
-            return RedirectToAction("Dashboard", "Home");
+            return View("NewEvent");
         }
 
-        [Route("event")]
+        [Route("newevent")]
         [HttpPost]
         public IActionResult AddEvent(Event newEvent)
         {
             dbContext.Add(newEvent);
             dbContext.SaveChanges();
-            return RedirectToAction("Home", "Dashboard");
+            return RedirectToAction("Dashboard", "Home");
         }
     }
 }
