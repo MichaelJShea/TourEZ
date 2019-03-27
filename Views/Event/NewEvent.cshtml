@@ -8,14 +8,24 @@
                 <input asp-for="eventName" class="form-control">
             </div>
             <div class="form-group">
-                <span asp-for="start"></span>
-                <label asp-for="start"></label>
-                <input asp-for="start" class="form-control">
+                <span asp-for="startTime"></span>
+                <label asp-for="startTime"></label>
+                <input asp-for="startTime" class="form-control">
             </div>
             <div class="form-group">
-                <span asp-for="end"></span>
-                <label asp-for="end"></label>
-                <input asp-for="end" class="form-control">
+                <span asp-for="startDate"></span>
+                <label asp-for="startDate"></label>
+                <input asp-for="startDate" class="form-control">
+            </div>
+            <div class="form-group">
+                <span asp-for="endTime"></span>
+                <label asp-for="endTime"></label>
+                <input asp-for="endTime" class="form-control">
+            </div>
+            <div class="form-group">
+                <span asp-for="endDate"></span>
+                <label asp-for="endDate"></label>
+                <input asp-for="endDate" class="form-control">
             </div>
             <div class="form-group">
                 <span asp-for="location"></span>
@@ -23,8 +33,18 @@
                 <input asp-for="location" class="form-control" id="location">
             </div>
             <button class="btn btn-primary" type="submit" id="submit">Create Event</button>
-            <input asp-for="longitude" type="hidden" value="" id="long">
-            <input asp-for="latitude"type="hidden" value="" id="lat">
         </form>
     </div>
 </div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDd0qpuCR49IQTA4Ce6wDEw5Gh5l10Swb8&libraries=places&callback=AutoCompleteLocation" async defer></script>
+<!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDd0qpuCR49IQTA4Ce6wDEw5Gh5l10Swb8&libraries=places&callback=AutoCompleteLocation"></script> -->
+<script>
+    function AutoCompleteLocation () {
+        autocomplete = new google.maps.places.Autocomplete(
+            document.getElementById('location'));
+
+        console.log(autocomplete);
+        
+        }
+</script>
+

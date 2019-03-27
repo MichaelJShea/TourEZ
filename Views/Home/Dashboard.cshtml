@@ -4,35 +4,40 @@
     <div class="container">
         <h3 class="">Your Events</h3><a class="btn btn-outline-primary info mb-2" href="/newevent" role="button">Add Event</a>
     </div>
-    <table class="table text-white">
-        <thead>
-            <tr>
-                <th scope="col">Date</th>
-                <th scope="col">Event</th>
-                <th scope="col">End Date</th>
-                <th scope="col">Days Until</th>
-                <th scope="col">Delete</th>
-            </tr>
-        </thead>
-        <tbody>
-            @{
-                DateTime now = DateTime.Now;
-                foreach(var e in @Model.AllEvents)
-                {
-                    <tr>
-                        <td>@e.start.ToString("MM/dd/yyyy")</td>
-                        <td><a href="event/@e.eventId">@e.eventName</a></td>
-                        <td>@e.end.ToString("MM/dd/yyyy")</td>
-                        <td>@e.start.Subtract(now).ToString("dd") Days</td>
-                        <td><a href="event/delete/@e.eventId" class="btn-sm btn-outline-primary">Delete</a></td>
-                        
-                    </tr>
+        <table class="table text-white">
+            <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Event</th>
+                    <th scope="col">Start</th>
+                    <th scope="col">End</th>
+                    <th scope="col">Days Until</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    DateTime now = DateTime.Now;
+                    foreach(var e in @Model.AllEvents)
+                    {
+                        <tr>
+                            <td>@e.start.ToString("MM/dd/yyyy")</td>
+                            <td>
+                                <a href="event/@e.eventId">@e.eventName</a>
+                            </td>
+                            <td>@e.startTime.ToString("hh:mm tt")</td>
+                            <td>@e.endTime.ToString("hh:mm tt")</td>
+                            <td>@e.start.Subtract(now).ToString("dd") Days</td>
+                            <td>
+                                <a href="event/delete/@e.eventId" class="btn-sm btn-outline-primary">Delete</a>
+                            </td>
+                        </tr>
+                    }
                 }
-            }
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 </div>
 <script>
-    
+
 
 </script>
