@@ -1,13 +1,10 @@
-﻿<div class=" container text-white text-center" style="height:400px; width: 100%">
-    <div id="map">
+﻿@model ViewModel
 
-    </div>
-</div>
-<div class="container text-center jumbotron mt-2">
+<div class="container-fluid text-center text-white">
     <div class="container">
-        <h3 class="">Your Events</h3><a class="btn btn-outline-info info mb-2" href="/newevent" role="button">Add Event</a>
+        <h3 class="">Your Events</h3><a class="btn btn-outline-primary info mb-2" href="/newevent" role="button">Add Event</a>
     </div>
-    <table class="table table-striped">
+    <table class="table text-white">
         <thead>
             <tr>
                 <th scope="col">Date</th>
@@ -17,52 +14,25 @@
                 <th scope="col">Delete</th>
             </tr>
         </thead>
-        <tbody id="listevents">
-            <!-- LIST OF EVENTS GOES HERE FROM JS -->
+        <tbody>
+            @{
+                DateTime now = DateTime.Now;
+                foreach(var e in @Model.AllEvents)
+                {
+                    <tr>
+                        <td>@e.start.ToString("MM/dd/yyyy")</td>
+                        <td><a href="event/@e.eventId">@e.eventName</a></td>
+                        <td>@e.end.ToString("MM/dd/yyyy")</td>
+                        <td>@e.start.Subtract(now).ToString("dd") Days</td>
+                        <td><a href="event/delete/@e.eventId" class="btn-sm btn-outline-primary">Delete</a></td>
+                        
+                    </tr>
+                }
+            }
         </tbody>
     </table>
 </div>
 <script>
-    $(document).ready(function(){
-        $.ajax({
-            url: "/dashboard/events",
-            success: function(data)
-            {console.log(data);
-                for(var i=0; i<data.length; i++)
-                {
-                    $("#listevents").append(`<tr><td>${data[i].start}</td><td><a href="/event/${data[i].eventId}">${data[i].eventName}</a></td><td>${data[i].end}</td><td>Days Until</td><td><a href="event/delete/${data[i].eventId}" class="btn btn-outline-primary" role="button">Delete</a></td></tr>`)
+    
 
-                        var geocodingParams = {
-                            searchText: `${data[i].location}`
-                        };
-                        var onResult = function(result) {
-                            var locations = result.Response.View[0].Result,
-                                position,
-                                marker;
-                                // Add a marker for each location found
-                            for (i = 0;  i < locations.length; i++) {
-                                position = {
-                                    lat: locations[i].Location.DisplayPosition.Latitude,
-                                    lng: locations[i].Location.DisplayPosition.Longitude
-                                };
-                                marker = new H.map.Marker(position);
-                                map.addObject(marker);
-                             }
-                        };
-                        // Get an instance of the geocoding service:
-                    var geocoder = platform.getGeocodingService();
-
-                    // Call the geocode method with the geocoding parameters,
-                    // the callback and an error callback function (called if a
-                    // communication error occurs):
-                    geocoder.geocode(geocodingParams, onResult, function(e) {
-                    alert(e);
-                    });
-
-                }
-            },
-
-            
-        })
-    })
 </script>

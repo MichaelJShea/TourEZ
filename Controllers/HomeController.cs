@@ -20,14 +20,13 @@ namespace TourEZ.Controllers
         [HttpGet]
         public IActionResult Dashboard()
         {
-            return View();
+            ViewModel AllEvents = new ViewModel()
+            {
+                AllEvents = dbContext.Events.OrderBy(e => e.start).ToList()
+            };
+            return View("Dashboard", AllEvents);
         }
 
-        [Route("dashboard/events")]
-        public JsonResult GetEvents()
-        {
-            return Json(dbContext.Events.OrderBy(e => e.start).ToList());
-        }
 
         [Route("event/{id}")]
         public IActionResult ViewEvent(int id)
