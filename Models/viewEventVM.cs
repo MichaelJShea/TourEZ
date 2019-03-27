@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace TourEZ.Models
 {
-    public class ViewModel
+    public class viewEventVM
     {
         public List<Event> AllEvents {get; set;}
         public Event ThisEvent {get; set;}

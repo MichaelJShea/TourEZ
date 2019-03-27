@@ -20,7 +20,7 @@ namespace TourEZ.Controllers
         [HttpGet]
         public IActionResult Dashboard()
         {
-            ViewModel AllEvents = new ViewModel()
+            viewEventVM AllEvents = new viewEventVM()
             {
                 AllEvents = dbContext.Events.OrderBy(e => e.start).ToList()
             };
@@ -31,7 +31,7 @@ namespace TourEZ.Controllers
         [Route("event/{id}")]
         public IActionResult ViewEvent(int id)
         {
-            ViewModel ViewEvent = new ViewModel()
+            viewEventVM ViewEvent = new viewEventVM()
             {
                 ThisEvent = dbContext.Events.FirstOrDefault(e => e.eventId == id)
             };
