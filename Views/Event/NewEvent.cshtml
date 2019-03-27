@@ -30,21 +30,28 @@
             <div class="form-group">
                 <span asp-for="location"></span>
                 <label asp-for="location"></label>
-                <input asp-for="location" class="form-control" id="location">
+                <input asp-for="location" type="text" class="form-control" id="autocomplete">
             </div>
+            <input asp-for="longitude" type="hidden" value="" id="longitude" >
+            <input asp-for="latitude" type="hidden" value="" id="latitude">
             <button class="btn btn-primary" type="submit" id="submit">Create Event</button>
         </form>
     </div>
 </div>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDd0qpuCR49IQTA4Ce6wDEw5Gh5l10Swb8&libraries=places&callback=AutoCompleteLocation" async defer></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDd0qpuCR49IQTA4Ce6wDEw5Gh5l10Swb8&libraries=places&callback=AutoCompleteLocation" async defer></script>
 <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDd0qpuCR49IQTA4Ce6wDEw5Gh5l10Swb8&libraries=places&callback=AutoCompleteLocation"></script> -->
 <script>
     function AutoCompleteLocation () {
-        autocomplete = new google.maps.places.Autocomplete(
-            document.getElementById('location'));
+        var input = document.getElementById('autocomplete');
+        var autocomplete = new google.maps.places.Autocomplete(input, {type: ['address']});
+        google.maps.event.addListener(autocomplete, 'place_changed', function(){
+        var place = autocomplete.getPlace();
+        console.log(place);
+        //document.getElementById("longitude").val() = 
+        //document.getElementById("latitude").val() = 
+        console.log(place.geometry.location.lat)
+        })
 
-        console.log(autocomplete);
-        
-        }
+    }
 </script>
 

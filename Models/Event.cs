@@ -66,6 +66,9 @@ namespace TourEZ.Models
         }
         [Display(Name="Location")]
         public string location {get;set;}
+        public double longitude {get; set;}
+        public double latitude {get; set;}
+
         public DateTime created_at {get;set;} = DateTime.Now;
 
        

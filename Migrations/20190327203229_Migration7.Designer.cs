@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TourEZ.Models;
 
 namespace TourEZ.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20190327203229_Migration7")]
+    partial class Migration7
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,6 +24,10 @@ namespace TourEZ.Migrations
                     b.Property<int>("eventId")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<double>("Latitude");
+
+                    b.Property<double>("Longitude");
+
                     b.Property<DateTime>("created_at");
 
                     b.Property<DateTime>("endDate");
@@ -30,11 +36,7 @@ namespace TourEZ.Migrations
 
                     b.Property<string>("eventName");
 
-                    b.Property<double>("latitude");
-
                     b.Property<string>("location");
-
-                    b.Property<double>("longitude");
 
                     b.Property<DateTime>("startDate");
 
