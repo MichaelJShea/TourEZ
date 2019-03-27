@@ -28,11 +28,11 @@ namespace TourEZ.Models
         public int eventId {get;set;}
         public string eventName {get;set;}
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true), Display(Name = "Event Date")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true), Display(Name = "Start Date")]
         public DateTime startDate {get;set;}
 
         [DataType(DataType.Time)]
-        [DisplayFormat(DataFormatString = "{0:HH:mm}", ApplyFormatInEditMode = true), Display(Name = "Event Time")]
+        [DisplayFormat(DataFormatString = "{0:HH:mm}", ApplyFormatInEditMode = true), Display(Name = "Start Time")]
         public DateTime startTime {get;set;}
         public DateTime start
         {
@@ -43,11 +43,11 @@ namespace TourEZ.Models
         }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true), Display(Name = "Event Date")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true), Display(Name = "End Date")]
         public DateTime endDate {get;set;}
 
         [DataType(DataType.Time)]
-        [DisplayFormat(DataFormatString = "{0:HH:mm}", ApplyFormatInEditMode = true), Display(Name = "Event Time")]
+        [DisplayFormat(DataFormatString = "{0:HH:mm}", ApplyFormatInEditMode = true), Display(Name = "End Time")]
         public DateTime endTime {get;set;}
         public DateTime end
         {

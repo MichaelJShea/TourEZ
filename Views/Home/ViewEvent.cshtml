@@ -15,19 +15,19 @@
             </tr>
             <tr>
                 <th scope="row"class="text-primary"><h5>Start Date:</h5></th>
-                <td><h5>@Model.ThisEvent.start.ToString("dddd,dd MMMM yyyy")</h5></td>
+                <td><h5>@Model.ThisEvent.startDate.ToString("dddd,dd MMMM yyyy")</h5></td>
             </tr>
             <tr>
                 <th scope="row"class="text-primary"><h5>Start Time:</h5></th>
-                <td><p>@Model.ThisEvent.start.ToString("hh:mm tt")</p></td>
+                <td><p>@Model.ThisEvent.startTime.ToString("hh:mm tt")</p></td>
             </tr>
             <tr>
                 <th scope="row"class="text-primary"><h5>End Date:</h5></th>
-                <td><h5>@Model.ThisEvent.end.ToString("dddd,dd MMMM yyyy")</h5></td>
+                <td><h5>@Model.ThisEvent.endDate.ToString("dddd,dd MMMM yyyy")</h5></td>
             </tr>
             <tr>
                 <th scope="row"class="text-primary"><h5>End Time:</h5></th>
-                <td><p>@Model.ThisEvent.end.ToString("hh:mm tt")</p></td>
+                <td><p>@Model.ThisEvent.endTime.ToString("hh:mm tt")</p></td>
             </tr>
         </tbody>
     </table>
