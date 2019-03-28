@@ -16,11 +16,11 @@
 <script>
     function initMap() {
         // The location of Uluru
-        var uluru = {lat: -25.344, lng: 131.036};
+        var uluru = {lat: @Model.ThisEvent.placeInfo.latitude, lng: @Model.ThisEvent.placeInfo.longitude};
         // The map, centered at Uluru
         var map = new google.maps.Map(
             document.getElementById('map'), {
-                zoom: 4,
+                zoom: 14,
                 center: uluru,
                 styles: [
                     {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
@@ -112,7 +112,5 @@
     * The key parameter will contain your own API key (which is not needed for this tutorial)
     * The callback parameter executes the initMap() function
     -->
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDd0qpuCR49IQTA4Ce6wDEw5Gh5l10Swb8&callback=initMap">
-    </script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDd0qpuCR49IQTA4Ce6wDEw5Gh5l10Swb8&callback=initMap"></script>
 

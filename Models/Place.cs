@@ -18,5 +18,6 @@ namespace TourEZ.Models
         public string contactName {get;set;}
         public string email {get;set;}
         public List<Event> events {get;set;}
+        public List<Hotel> hotels {get;set;}
     }
 }

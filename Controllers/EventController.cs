@@ -34,8 +34,9 @@ namespace TourEZ.Controllers
         [Route("newevent")]
         [HttpPost]
         public IActionResult AddEvent(Event newEvent, Place newPlace)
-        {
+        {   
             dbContext.Add(newPlace);
+            newEvent.placeId = newPlace.placeId;
             dbContext.Add(newEvent);
             dbContext.SaveChanges();
             return RedirectToAction("Dashboard", "Home");

@@ -5,7 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TourEZ.Models;
-
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace TourEZ.Controllers
 {
@@ -33,7 +35,7 @@ namespace TourEZ.Controllers
         {
             viewEventVM ViewEvent = new viewEventVM()
             {
-                ThisEvent = dbContext.Events.FirstOrDefault(e => e.eventId == id)
+                ThisEvent = dbContext.Events.Include(e => e.placeInfo).FirstOrDefault(e => e.eventId == id)
             };
             return View("ViewEvent", ViewEvent);
         }

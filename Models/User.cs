@@ -33,7 +33,8 @@ namespace TourEZ.Models
        [Compare("Password", ErrorMessage="Passwords does not match")]
        [DataType(DataType.Password)]
        [Display(Name = "Confirm Password")]
-       public string Confirm {get; set;}       
+       public string Confirm {get; set;}
+
     }
 
     public class UserLogin

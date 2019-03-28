@@ -29,6 +29,11 @@ namespace TourEZ.Controllers
         [HttpGet]
         public IActionResult LoginReg()
         {
+            int? user_id = HttpContext.Session.GetInt32("UserId");
+            if(user_id != null)
+            {
+                return RedirectToAction("Dashboard", "Home");
+            }
             return View();
         }
 

@@ -1,39 +1,43 @@
-@model Event
+@model newEventVM
 <div class="container-fluid text-white">
     <div class="container rounded p-4 col-6">
         <form asp-action="AddEvent" asp-controller="Event" method="post">
             <div class="form-group">
-                <span asp-for="eventName"></span>
-                <label asp-for="eventName"></label>
-                <input asp-for="eventName" class="form-control">
+                <span asp-for="newEvent.eventName"></span>
+                <label asp-for="newEvent.eventName"></label>
+                <input asp-for="newEvent.eventName" class="form-control">
             </div>
             <div class="form-group">
-                <span asp-for="startTime"></span>
-                <label asp-for="startTime"></label>
-                <input asp-for="startTime" class="form-control">
+                <span asp-for="newEvent.startTime"></span>
+                <label asp-for="newEvent.startTime"></label>
+                <input asp-for="newEvent.startTime" class="form-control">
             </div>
             <div class="form-group">
-                <span asp-for="startDate"></span>
-                <label asp-for="startDate"></label>
-                <input asp-for="startDate" class="form-control">
+                <span asp-for="newEvent.startDate"></span>
+                <label asp-for="newEvent.startDate"></label>
+                <input asp-for="newEvent.startDate" class="form-control">
             </div>
             <div class="form-group">
-                <span asp-for="endTime"></span>
-                <label asp-for="endTime"></label>
-                <input asp-for="endTime" class="form-control">
+                <span asp-for="newEvent.endTime"></span>
+                <label asp-for="newEvent.endTime"></label>
+                <input asp-for="newEvent.endTime" class="form-control">
             </div>
             <div class="form-group">
-                <span asp-for="endDate"></span>
-                <label asp-for="endDate"></label>
-                <input asp-for="endDate" class="form-control">
+                <span asp-for="newEvent.endDate"></span>
+                <label asp-for="newEvent.endDate"></label>
+                <input asp-for="newEvent.endDate" class="form-control">
             </div>
             <div class="form-group">
-                <span asp-for="location"></span>
-                <label asp-for="location"></label>
-                <input asp-for="location" type="text" class="form-control" id="autocomplete">
+                <span asp-for="newEvent.location"></span>
+                <label asp-for="newEvent.location"></label>
+                <input asp-for="newEvent.location" type="text" class="form-control" id="autocomplete">
             </div>
-            <input asp-for="longitude" type="hidden" value="" id="longitude" >
-            <input asp-for="latitude" type="hidden" value="" id="latitude">
+            <input asp-for="newPlace.name" type="hidden" value="" id="name">
+            <input asp-for="newPlace.address" type="hidden" value="" id="address">
+            <input asp-for="newPlace.website" type="hidden" value="" id="website">
+            <input asp-for="newPlace.phone" type="hidden" value="" id="phone">
+            <input asp-for="newPlace.longitude" type="hidden" value="" id="longitude">
+            <input asp-for="newPlace.latitude" type="hidden" value="" id="latitude">
             <button class="btn btn-primary" type="submit" id="submit">Create Event</button>
         </form>
     </div>
@@ -47,9 +51,17 @@
         google.maps.event.addListener(autocomplete, 'place_changed', function(){
         var place = autocomplete.getPlace();
         console.log(place);
-        //document.getElementById("longitude").val() = 
-        //document.getElementById("latitude").val() = 
-        console.log(place.geometry.location.lat)
+        $("#longitude").val(place.geometry.location.lng());
+        $("#latitude").val(place.geometry.location.lat());
+        $("#name").val(place.name);
+        $("#address").val(place.formatted_address);
+        $("#phone").val(place.formatted_phone_number);
+        $("#website").val(place.website);
+        //console.log(place.geometry.location.lat());
+        //console.log(place.geometry.location.lng());
+        //console.log(place.formatted_address);
+        //console.log(place.formatted_phone_number);
+        //console.log(place.name);
         })
 
     }
