@@ -24,7 +24,7 @@ namespace TourEZ.Controllers
         {
             viewEventVM AllEvents = new viewEventVM()
             {
-                AllEvents = dbContext.Events.OrderBy(e => e.start).ToList()
+                AllEvents = dbContext.Events.Include(e => e.placeInfo).OrderBy(e => e.start).ToList()
             };
             return View("Dashboard", AllEvents);
         }
