@@ -27,17 +27,6 @@ namespace TourEZ.Controllers
             return View("Dashboard", AllEvents);
         }
 
-
-        [Route("event/{id}")]
-        public IActionResult ViewEvent(int id)
-        {
-            ViewModel ViewEvent = new ViewModel()
-            {
-                ThisEvent = dbContext.Events.FirstOrDefault(e => e.eventId == id)
-            };
-            return View("ViewEvent", ViewEvent);
-        }
-
         [Route("event/delete/{id}")]
         public IActionResult DeleteEvent(int id)
         {

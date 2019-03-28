@@ -1,43 +1,172 @@
 ﻿@model ViewModel
 
-<div class="container-fluid text-center text-white">
-    <div class="container">
-        <h3 class="">Your Events</h3><a class="btn btn-outline-primary info mb-2" href="/newevent" role="button">Add Event</a>
-    </div>
-        <table class="table text-white">
-            <thead>
-                <tr>
-                    <th scope="col">Date</th>
-                    <th scope="col">Event</th>
-                    <th scope="col">Start</th>
-                    <th scope="col">End</th>
-                    <th scope="col">Days Until</th>
-                    <th scope="col">Delete</th>
-                </tr>
-            </thead>
-            <tbody>
-                @{
-                    DateTime now = DateTime.Now;
-                    foreach(var e in @Model.AllEvents)
-                    {
-                        <tr>
-                            <td>@e.start.ToString("MM/dd/yyyy")</td>
-                            <td>
-                                <a href="event/@e.eventId">@e.eventName</a>
-                            </td>
-                            <td>@e.startTime.ToString("hh:mm tt")</td>
-                            <td>@e.endTime.ToString("hh:mm tt")</td>
-                            <td>@e.start.Subtract(now).ToString("dd") Days</td>
-                            <td>
-                                <a href="event/delete/@e.eventId" class="btn-sm btn-outline-primary">Delete</a>
-                            </td>
-                        </tr>
-                    }
-                }
-            </tbody>
-        </table>
+
+<div class="container text-white text-center">
+    <h3 class="">Your Events</h3><a class="btn btn-outline-primary info mb-2" href="/newevent" role="button">Add Event</a>
 </div>
+<div>
+
+    <table class="table-expand-row col-11 container">
+        <thead>
+            <tr class="text-center">
+                <th scope="col"></th>
+                <th scope="col">Date</th>
+                <th scope="col">Event</th>
+                <th scope="col">Start</th>
+                <th scope="col">End</th>
+                <th scope="col">Days Until</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                DateTime now = DateTime.Now;
+                foreach(var e in @Model.AllEvents)
+                {
+                    <tr class="table-expand-row" data-open-details>
+                        <td><span class="expand-icon"></span></td>
+                        <td>@e.start.ToString("MM/dd/yyyy")</td>
+                        <td>
+                            <a href="event/@e.eventId">@e.eventName</a>
+                        </td>
+                        <td>@e.startTime.ToString("hh:mm tt")</td>
+                        <td>@e.endTime.ToString("hh:mm tt")</td>
+                        <td>@e.start.Subtract(now).ToString("dd") Days</td>
+                        <td>
+                            <a href="event/delete/@e.eventId" class="btn-sm btn-outline-primary">Delete</a>
+                        </td>
+                    </tr>
+
+                    <tr class="table-expand-row-content">
+                        <td colspan="8" class="table-expand-row-nested">
+                            <div class="jumbotron bg-secondary border border-white container">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h2 class="text-white"><span class="text-dark">EVENT:</span> @e.eventName </h2>
+                                            <h6 class="text-white"><span class="text-dark">LOCATION:</span> @e.location</h6>
+                                            <h6 class="text-white"><span class="text-dark">START DATE:</span> @e.startDate.ToString("dddd,dd MMMM yyyy")</h6>
+                                            <h6 class="text-white"><span class="text-dark">START TIME:</span> @e.startTime.ToString("hh:mm tt")</h6>
+                                            <h6 class="text-white"><span class="text-dark">END DATE:</span> @e.endDate.ToString("dddd,dd MMMM yyyy")</h6>
+                                            <h6 class="text-white"><span class="text-dark">END TIME:</span> @e.endTime.ToString("hh:mm tt")</h6>
+                                        </div>
+                                        <div class="col">
+                                            <div id="map" class="border border-white" style="height:300px; width:100%;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <script>
+                                function initMap() {
+                                    // The location of Uluru
+                                    var uluru = {lat: @e.latitude, lng: @e.longitude};
+                                    // The map, centered at Uluru
+                                    var map = new google.maps.Map(
+                                        document.getElementById('map'), {
+                                            zoom: 14,
+                                            center: uluru,
+                                            styles: [
+                                                {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+                                                {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+                                                {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+                                                {
+                                                featureType: 'administrative.locality',
+                                                elementType: 'labels.text.fill',
+                                                stylers: [{color: '#d59563'}]
+                                                },
+                                                {
+                                                featureType: 'poi',
+                                                elementType: 'labels.text.fill',
+                                                stylers: [{color: '#d59563'}]
+                                                },
+                                                {
+                                                featureType: 'poi.park',
+                                                elementType: 'geometry',
+                                                stylers: [{color: '#263c3f'}]
+                                                },
+                                                {
+                                                featureType: 'poi.park',
+                                                elementType: 'labels.text.fill',
+                                                stylers: [{color: '#6b9a76'}]
+                                                },
+                                                {
+                                                featureType: 'road',
+                                                elementType: 'geometry',
+                                                stylers: [{color: '#38414e'}]
+                                                },
+                                                {
+                                                featureType: 'road',
+                                                elementType: 'geometry.stroke',
+                                                stylers: [{color: '#212a37'}]
+                                                },
+                                                {
+                                                featureType: 'road',
+                                                elementType: 'labels.text.fill',
+                                                stylers: [{color: '#9ca5b3'}]
+                                                },
+                                                {
+                                                featureType: 'road.highway',
+                                                elementType: 'geometry',
+                                                stylers: [{color: '#746855'}]
+                                                },
+                                                {
+                                                featureType: 'road.highway',
+                                                elementType: 'geometry.stroke',
+                                                stylers: [{color: '#1f2835'}]
+                                                },
+                                                {
+                                                featureType: 'road.highway',
+                                                elementType: 'labels.text.fill',
+                                                stylers: [{color: '#f3d19c'}]
+                                                },
+                                                {
+                                                featureType: 'transit',
+                                                elementType: 'geometry',
+                                                stylers: [{color: '#2f3948'}]
+                                                },
+                                                {
+                                                featureType: 'transit.station',
+                                                elementType: 'labels.text.fill',
+                                                stylers: [{color: '#d59563'}]
+                                                },
+                                                {
+                                                featureType: 'water',
+                                                elementType: 'geometry',
+                                                stylers: [{color: '#17263c'}]
+                                                },
+                                                {
+                                                featureType: 'water',
+                                                elementType: 'labels.text.fill',
+                                                stylers: [{color: '#515c6d'}]
+                                                },
+                                                {
+                                                featureType: 'water',
+                                                elementType: 'labels.text.stroke',
+                                                stylers: [{color: '#17263c'}]
+                                                }
+                                            ]
+                                        });
+                                        // The marker, positioned at Uluru
+                                        var marker = new google.maps.Marker({position: uluru, map: map});
+                                    }
+                            </script>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
 <script>
+
+$('[data-open-details]').click(function () {
+  $(this).next().toggleClass('is-active');
+  $(this).toggleClass('is-active');
+});
 
 
 </script>
+
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDd0qpuCR49IQTA4Ce6wDEw5Gh5l10Swb8&callback=initMap"></script>

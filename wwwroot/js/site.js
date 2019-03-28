@@ -18,5 +18,6 @@
 //   console.log(autocomplete);
 // }
 
+$('.collapse').collapse()
 
 
